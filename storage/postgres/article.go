@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"errors"
+
 	"github.com/Aziz0310/bootcamp/article/models"
 )
 
@@ -39,6 +40,8 @@ func (stg Postgres) AddArticle(id string, entity models.CreateArticleModel) erro
 // GetArticleByID ...
 func (stg Postgres) GetArticleByID(id string) (models.PackedArticleModel, error) {
 	var a models.PackedArticleModel
+
+	var tempMiddlename *string
 	err := stg.db.QueryRow(`SELECT 
 		ar.id,
 		ar.title,
@@ -48,6 +51,7 @@ func (stg Postgres) GetArticleByID(id string) (models.PackedArticleModel, error)
 		ar.deleted_at,
 		au.id,
 		au.firstname,
+		au.middlename,
 		au.lastname,
 		au.created_at,
 		au.updated_at,
@@ -61,6 +65,7 @@ func (stg Postgres) GetArticleByID(id string) (models.PackedArticleModel, error)
 		&a.DeletedAt,
 		&a.Author.ID,
 		&a.Author.Firstname,
+		&tempMiddlename,
 		&a.Author.Lastname,
 		&a.Author.CreatedAt,
 		&a.Author.UpdatedAt,
@@ -68,6 +73,10 @@ func (stg Postgres) GetArticleByID(id string) (models.PackedArticleModel, error)
 	)
 	if err != nil {
 		return a, err
+	}
+
+	if tempMiddlename != nil {
+		a.Author.Middlename = *tempMiddlename
 	}
 
 	return a, nil

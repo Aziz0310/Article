@@ -10,11 +10,7 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "contact": {
-            "name": "API Article",
-            "url": "https://john.doe.com",
-            "email": "john.doe@swagger.io"
-        },
+        "contact": {},
         "license": {
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -603,6 +599,10 @@ const docTemplate = `{
                     "minLength": 2,
                     "example": "Doe"
                 },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
+                },
                 "updated_at": {
                     "type": "string"
                 }
@@ -660,6 +660,10 @@ const docTemplate = `{
                     "maxLength": 50,
                     "minLength": 2,
                     "example": "Doe"
+                },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
                 }
             }
         },
@@ -740,6 +744,10 @@ const docTemplate = `{
                     "maxLength": 50,
                     "minLength": 2,
                     "example": "Doe"
+                },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
                 },
                 "updated_at": {
                     "type": "string"

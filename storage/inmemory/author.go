@@ -13,6 +13,7 @@ func (im InMemory) AddAuthor(id string, entity models.CreateAuthorModel) error {
 	author.ID = id
 	author.Firstname = entity.Firstname
 	author.Lastname = entity.Lastname
+	author.Middlename = entity.Middlename
 	author.CreatedAt = time.Now()
 
 	im.Db.InMemoryAuthorData = append(im.Db.InMemoryAuthorData, author)

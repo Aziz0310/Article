@@ -36,7 +36,6 @@ type PackedArticleModel struct {
 
 // UpdateArticleModel ...
 type UpdateArticleModel struct {
-	ID        string    `json:"id"`
-	Content   Content   // Promoted fields
+	ID      string  `json:"id"`
+	Content Content // Promoted fields
 }
-

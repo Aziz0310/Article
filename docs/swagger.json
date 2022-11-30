@@ -1,11 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "contact": {
-            "name": "API Article",
-            "url": "https://john.doe.com",
-            "email": "john.doe@swagger.io"
-        },
+        "contact": {},
         "license": {
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
@@ -591,6 +587,10 @@
                     "minLength": 2,
                     "example": "Doe"
                 },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
+                },
                 "updated_at": {
                     "type": "string"
                 }
@@ -648,6 +648,10 @@
                     "maxLength": 50,
                     "minLength": 2,
                     "example": "Doe"
+                },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
                 }
             }
         },
@@ -728,6 +732,10 @@
                     "maxLength": 50,
                     "minLength": 2,
                     "example": "Doe"
+                },
+                "middlename": {
+                    "type": "string",
+                    "example": "O"
                 },
                 "updated_at": {
                     "type": "string"

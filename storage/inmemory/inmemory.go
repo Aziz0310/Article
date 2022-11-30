@@ -1,4 +1,4 @@
-package inmemory 
+package inmemory
 
 import "github.com/Aziz0310/bootcamp/article/models"
 
