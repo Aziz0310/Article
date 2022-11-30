@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
+	"github.com/Aziz0310/bootcamp/article/config"
 	"github.com/Aziz0310/bootcamp/article/docs"
 	_ "github.com/Aziz0310/bootcamp/article/docs"
 	"github.com/Aziz0310/bootcamp/article/handlers"
@@ -18,6 +20,17 @@ import (
 // @license.url   https://www.apache.org/licenses/LICENSE-2.0.html
 
 func main() {
+	cfg := config.Load()
+
+	psqlConnString := fmt.Sprintf(
+		"host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		cfg.PostgresHost,
+		cfg.PostgresPort,
+		cfg.PostgresUser,
+		cfg.PostgresPassword,
+		cfg.PostgresDatabase,
+	)
+
 	// programatically set swagger info
 	docs.SwaggerInfo.Title = "Swagger Example API"
 	docs.SwaggerInfo.Description = "This is a sample server Petstore server."
@@ -25,7 +38,7 @@ func main() {
 
 	var err error
 	var stg storage.StorageI
-	stg, err = postgres.InitDB("user=azizazamhodjaev password=12345678 dbname=article_db sslmode=disable")
+	stg, err = postgres.InitDB(psqlConnString)
 	if err != nil {
 		panic(err)
 	}

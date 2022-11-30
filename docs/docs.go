@@ -577,31 +577,20 @@ const docTemplate = `{
         "models.Author": {
             "type": "object",
             "required": [
-                "firstname",
-                "lastname"
+                "fullname"
             ],
             "properties": {
                 "created_at": {
                     "type": "string"
                 },
-                "firstname": {
+                "fullname": {
                     "type": "string",
                     "maxLength": 50,
                     "minLength": 2,
-                    "example": "John"
+                    "example": "John Doe"
                 },
                 "id": {
                     "type": "string"
-                },
-                "lastname": {
-                    "type": "string",
-                    "maxLength": 50,
-                    "minLength": 2,
-                    "example": "Doe"
-                },
-                "middlename": {
-                    "type": "string",
-                    "example": "O"
                 },
                 "updated_at": {
                     "type": "string"

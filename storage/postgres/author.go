@@ -11,20 +11,14 @@ func (stg Postgres) AddAuthor(id string, entity models.CreateAuthorModel) error 
 	_, err := stg.db.Exec(`INSERT INTO 
 	author (
 		id,
-		firstname,
-		middlename,
-		lastname
+		fullname
 		) 
 	VALUES (
 		$1, 
-		$2,
-		$3,
-		$4
+		$2
 		)`,
 		id,
-		entity.Firstname,
-		entity.Middlename,
-		entity.Lastname,
+		entity.Fullname,
 	)
 	if err != nil {
 		return err
@@ -38,17 +32,13 @@ func (stg Postgres) GetAuthorByID(id string) (models.GetAuthorByIdResp, error) {
 	var res models.GetAuthorByIdResp
 	err := stg.db.QueryRow(`SELECT 
 		au.id,
-		au.firstname,
-		au.middlename,
-		au.lastname,
+		au.fullname,
 		au.created_at,
 		au.updated_at,
 		au.deleted_at
     FROM author AS au  WHERE au.id = $1`, id).Scan(
 		&res.ID,
-		&res.Firstname,
-		&res.Middlename,
-		&res.Lastname,
+		&res.Fullname,
 		&res.CreatedAt,
 		&res.UpdatedAt,
 		&res.DeletedAt,
@@ -64,9 +54,7 @@ func (stg Postgres) GetAuthorByID(id string) (models.GetAuthorByIdResp, error) {
 func (stg Postgres) GetAuthorList(offset, limit int, search string) (resp []models.Author, err error) {
 	rows, err := stg.db.Queryx(`SELECT
 	id,
-	firstname,
-	middlename,
-	lastname,
+	fullname,
 	created_at,
 	updated_at,
 	deleted_at 
@@ -83,9 +71,7 @@ func (stg Postgres) GetAuthorList(offset, limit int, search string) (resp []mode
 
 		err := rows.Scan(
 			&a.ID,
-			&a.Firstname,
-			&a.Middlename,
-			&a.Lastname,
+			&a.Fullname,
 			&a.CreatedAt,
 			&a.UpdatedAt,
 			&a.DeletedAt,
@@ -101,11 +87,9 @@ func (stg Postgres) GetAuthorList(offset, limit int, search string) (resp []mode
 
 // UpdateAuthor
 func (stg Postgres) UpdateAuthor(entity models.UpdateAuthorModel) error {
-	res, err := stg.db.NamedExec("UPDATE author  SET firstname=:f, middlename=:m, lastname=:l, updated_at=now() WHERE deleted_at IS NULL AND id=:id", map[string]interface{}{
+	res, err := stg.db.NamedExec("UPDATE author  SET fullname=:f, updated_at=now() WHERE deleted_at IS NULL AND id=:id", map[string]interface{}{
 		"id": entity.ID,
-		"f":  entity.Firstname,
-		"m":  entity.Middlename,
-		"l":  entity.Lastname,
+		"f":  entity.Fullname,
 	})
 	if err != nil {
 		return err

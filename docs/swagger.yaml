@@ -22,26 +22,17 @@ definitions:
     properties:
       created_at:
         type: string
-      firstname:
-        example: John
+      fullname:
+        example: John Doe
         maxLength: 50
         minLength: 2
         type: string
       id:
         type: string
-      lastname:
-        example: Doe
-        maxLength: 50
-        minLength: 2
-        type: string
-      middlename:
-        example: O
-        type: string
       updated_at:
         type: string
     required:
-    - firstname
-    - lastname
+    - fullname
     type: object
   models.Content:
     properties:
