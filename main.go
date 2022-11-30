@@ -14,8 +14,6 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger" // gin-swagger middleware
 )
 
-
-
 // @license.name  Apache 2.0
 // @license.url   https://www.apache.org/licenses/LICENSE-2.0.html
 
